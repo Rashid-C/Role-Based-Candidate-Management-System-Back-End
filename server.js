@@ -1,4 +1,4 @@
-// server.js
+
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -15,10 +15,14 @@ connectDB();
 const app = express();
 
 
-app.use(cors({
-    origin: '*', 
-    credentials: true
-}));
+if (process.env.NODE_ENV === 'production') {
+   
+    app.use(express.static('public'));
+    app.use(cors({
+        origin: process.env.FRONTEND_URL, 
+        credentials: true
+    }));
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -32,7 +36,7 @@ app.get('/', (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
