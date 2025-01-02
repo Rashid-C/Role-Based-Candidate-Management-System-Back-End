@@ -1,4 +1,4 @@
-// utils/s3Config.js
+
 import { S3Client } from '@aws-sdk/client-s3';
 import multer from 'multer';
 import multerS3 from 'multer-s3';
@@ -11,7 +11,7 @@ const s3Client = new S3Client({
     }
 });
 
-// Configure multer for S3 uploads
+
 const upload = multer({
     storage: multerS3({
         s3: s3Client,
@@ -39,7 +39,7 @@ const upload = multer({
         cb(null, true);
     },
     limits: {
-        fileSize: 5 * 1024 * 1024 // 5MB limit
+        fileSize: 5 * 1024 * 1024 
     }
 });
 

@@ -1,4 +1,4 @@
-// utils/jwtUtils.js
+
 import jwt from 'jsonwebtoken';
 
 export const generateToken = (userId, role) => {
